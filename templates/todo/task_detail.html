@@ -1,0 +1,14 @@
+{% extends 'todo/base.html' %}
+{% block main %}
+    <div class="article-entry">
+        <h2>{{ object.title }}</h2>
+        <h4>{{ object.expired}}</h4>
+        <p>by {{ object.description }}</p>
+        <p>{{ object.category }}</p>
+        <h4>{{ object.created }} | {{ object.priority }} | {{ object.status }}</h4>
+        <h3>{{ object.updated }}</h3>
+    </div>
+{#    <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
+{#        <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
+    <p>Back to <a href="{% url 'listview' %}">All Tasks</a>.</p>
+{% endblock main %}
