@@ -2,7 +2,7 @@
 {% extends 'todo/base.html' %}
 {% block title %}Tasks{% endblock title %}
 {% block main %}
-    {% for task in object_list %}
+    {% for task in all_task_list %}
         <div class="col-3 row ">
             <div class="card-header">
                 <span class="font-weight-bold "><a href="{{ task.get_absolute_url }}">{{ task.id }}- {{ task.title }}</a></span>

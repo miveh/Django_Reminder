@@ -1,9 +1,9 @@
 {% extends 'todo/base.html' %}
+{% load static %}
 {% block title %}
     Home
 {% endblock %}
 {% block main %}
-    <h2>The HomePage!!</h2>
-
-
+{#    <div class="img-back"><h2 class="home-page-text">The HomePage!!</h2></div>#}
+    <img class="img-back" src="{% static './image/to-do-list.jpg' %}" alt="image">
 {% endblock main%}

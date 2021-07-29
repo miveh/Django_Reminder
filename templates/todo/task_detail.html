@@ -1,14 +1,16 @@
 {% extends 'todo/base.html' %}
+{% block title %}Task Detail{% endblock title %}
 {% block main %}
     <div class="article-entry">
         <h2>{{ object.title }}</h2>
+{#        <h2>{{ object.id }}</h2>#}
         <h4>{{ object.expired}}</h4>
-        <p>by {{ object.description }}</p>
+        <p>{{ object.description }}</p>
         <p>{{ object.category }}</p>
         <h4>{{ object.created }} | {{ object.priority }} | {{ object.status }}</h4>
         <h3>{{ object.updated }}</h3>
     </div>
 {#    <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
 {#        <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
-    <p>Back to <a href="{% url 'listview' %}">All Tasks</a>.</p>
+    <p>Back to <a class="btn btn-primary todo-application" href="{% url 'listview' %}">All Tasks</a>.</p>
 {% endblock main %}

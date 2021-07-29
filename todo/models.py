@@ -8,7 +8,10 @@ class Category(models.Model):
     title = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.title
+        return f'{self.title}-{self.id}'
+
+    def get_absolute_url(self):
+        return reverse('catdetail', args=[str(self.id)])
 
 
 class Task(models.Model):
@@ -39,7 +42,11 @@ class Task(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'"{self.title}" on: {self.expired.date()}'
+        return f'"{self.title}" status: {self.status}'
 
     def get_absolute_url(self):
         return reverse('detailview', args=[str(self.id)])
+
+    # def get_tasks_of_category(self):
+    #     task_of_category = self.objects.all()[id].task_set.all()
+    #     return task_of_category

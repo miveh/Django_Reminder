@@ -1,0 +1,12 @@
+.todo-application {
+    text-decoration: none;
+    color: #1b1b1b;
+}
+
+.title-color {
+    color: cadetblue;
+}
+
+.img-back{
+    background-image: url("./image/to-do-list.jpg");
+}
