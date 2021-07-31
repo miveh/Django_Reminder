@@ -9,7 +9,7 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="article-entry">
-                                    <h3>{{ object.title }}:</h3>
+                                    <h3>{{ object.title|title }}:</h3>
                                     {% if object.task_set.all %}
                                         {% for obj in object.task_set.all %}
                                             <p class=" card-header">TASK >> Title: {{ obj.title }}, Description: {{ obj.description }}</p><br>

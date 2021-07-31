@@ -1,16 +1,36 @@
 {% extends 'todo/base.html' %}
 {% block title %}Task Detail{% endblock title %}
 {% block main %}
-    <div class="article-entry">
-        <h2>{{ object.title }}</h2>
-{#        <h2>{{ object.id }}</h2>#}
-        <h4>{{ object.expired}}</h4>
-        <p>{{ object.description }}</p>
-        <p>{{ object.category }}</p>
-        <h4>{{ object.created }} | {{ object.priority }} | {{ object.status }}</h4>
-        <h3>{{ object.updated }}</h3>
+    <div class="mt-5">
+        <div class="container">
+            <div class="row  justify-content-center">
+                <div class="col-12 col-md-7">
+                    <div class="card" style="background: #f5efef;">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="article-entry">
+                                    <h3>Title: {{ object.title | title }}</h3>
+                                    <h4>Amount of time left up: {{ object.expired|timeuntil }}</h4>
+                                    <h4>Task Description: {{ object.description }}</h4>
+                                    <h4>Categories: </h4>
+                                    {% for obj in object.category.all %}
+                                        <h4> >> {{ obj.title }}</h4>
+                                    {% endfor %}
+                                    <h6>{{ object.created }} |Priority: {{ object.get_priority_display }} |Status:
+                                        {{ object.status }}
+                                    </h6>
+                                </div>
+                                {# <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
+                                {# <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
+                                <p>Back to <a class="btn btn-primary todo-application" href="{% url 'listview' %}">
+                                    All Tasks</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-{#    <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
-{#        <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
-    <p>Back to <a class="btn btn-primary todo-application" href="{% url 'listview' %}">All Tasks</a>.</p>
+
 {% endblock main %}

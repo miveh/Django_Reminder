@@ -26,6 +26,13 @@ class CategoryListView(ListView):
     template_name = 'todo/cat_list.html'
     context_object_name = 'all_category_list'
 
+    # queryset = Category.objects.get_null_category()
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['null_of_task'] = Category.objects.get_null_category()
+        context_data['notnull_of_task'] = Category.objects.get_notnull_category()
+        return context_data
+
 
 class CategoryDetailView(DetailView):
     model = Category

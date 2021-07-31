@@ -1,3 +1,8 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
 .todo-application {
     text-decoration: none;
     color: #1b1b1b;
@@ -5,8 +10,27 @@
 
 .title-color {
     color: cadetblue;
+    text-align: center;
 }
 
-.img-back{
-    background-image: url("./image/to-do-list.jpg");
+.img-back {
+
+    /*background-repeat: no-repeat;*/
+    /*height: auto;*/
+    /*width: auto;*/
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-page-text {
+    text-align: center;
+}
+
+.img-list {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

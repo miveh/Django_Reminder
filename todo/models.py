@@ -4,11 +4,22 @@ from django.db import models
 from django.urls import reverse
 
 
+class CategoryManager(models.Manager):
+    def get_null_category(self):
+        null_category = Category.objects.filter(task__isnull=True)
+        return null_category
+
+    def get_notnull_category(self):
+        not_null_category = Category.objects.exclude(task__isnull=True)
+        return not_null_category
+
+
 class Category(models.Model):
     title = models.CharField(max_length=20)
+    objects = CategoryManager()
 
     def __str__(self):
-        return f'{self.title}-{self.id}'
+        return f'{self.id}-{self.title}'
 
     def get_absolute_url(self):
         return reverse('catdetail', args=[str(self.id)])
@@ -46,7 +57,3 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('detailview', args=[str(self.id)])
-
-    # def get_tasks_of_category(self):
-    #     task_of_category = self.objects.all()[id].task_set.all()
-    #     return task_of_category

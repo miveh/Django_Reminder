@@ -2,16 +2,31 @@
 {% extends 'todo/base.html' %}
 {% block title %}Tasks{% endblock title %}
 {% block main %}
-    {% for task in all_task_list %}
-        <div class="col-3 row ">
-            <div class="card-header">
-                <span class="font-weight-bold "><a href="{{ task.get_absolute_url }}">{{ task.id }}- {{ task.title }}</a></span>
+    <div class="mt-5">
+        <div class="container">
+            <div class="row  justify-content-center">
+                <div class="col-12 col-md-7">
+                    <div class="card" style="background: #f5efef;">
+                        <div class="card-body">
+                            <div class="container">
+                                {% for task in all_task_list %}
+                                    <div class="row ">
+                                        <div class="card-header">
+                                            <span class="font-weight-bold "><a
+                                                    href="{{ task.get_absolute_url }}">{{ task.id }}- {{ task.title |title}}</a></span>
+                                        </div>
+                                        {#            <div class="card-footer text-center text-muted">#}
+                                        {#                <a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
+                                        {#                <a href="{% url 'article_delete' article.pk %}">Delete</a>#}
+                                        {#            </div>#}
+                                    </div>
+                                    <br/>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-{#            <div class="card-footer text-center text-muted">#}
-{#                <a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
-{#                <a href="{% url 'article_delete' article.pk %}">Delete</a>#}
-{#            </div>#}
         </div>
-        <br/>
-    {% endfor %}
+    </div>
 {% endblock main %}
