@@ -12,14 +12,12 @@
                                     <h3>{{ object.title|title }}:</h3>
                                     {% if object.task_set.all %}
                                         {% for obj in object.task_set.all %}
-                                            <p class=" card-header">TASK >> Title: {{ obj.title }}, Description: {{ obj.description }}</p><br>
+                                            <span class=" card card-body"><h6 style="color: #3CB371">Title:</h6><h6>&ensp;&ensp;&ensp;{{ obj.title }}</h6><h6 style="color: #3CB371">Description:</h6><h6>&ensp;&ensp;&ensp;{{ obj.description }}</h6></span><br>
                                         {% endfor %}
                                     {% else %}
                                         <p>No Task </p>
                                     {% endif %}
                                 </div>
-                                {#    <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
-                                {#                <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
                                 <p>Back to <a class="btn btn-primary todo-application" href="{% url 'catlist' %}">All
                                     Category</a></p>
                             </div>
@@ -29,6 +27,5 @@
             </div>
         </div>
     </div>
-
 {% endblock main %}
 

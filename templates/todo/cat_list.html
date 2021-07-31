@@ -9,15 +9,6 @@
                 <div class="col-12 col-md-7">
                     <div class="card" style="background: #f5efef;">
                         <div class="card-body">
-                            {#                            {% for category in all_category_list %}#}
-                            {#                                <div class=" row">#}
-                            {#                                    <div class="card-header">#}
-                            {#                                        <span class="font-weight-bold "><a#}
-                            {#                                                href="{{ category.get_absolute_url }}">{{ category.id }}- {{ category.title }}</a></span>#}
-                            {#                                    </div>#}
-                            {#                                </div>#}
-                            {#                                <br/>#}
-                            {#                            {% endfor %}#}
                             <h3>Taskless categories:</h3>
                             {% for category in notnull_of_task %}
                                 <div class=" row">
@@ -38,8 +29,6 @@
                                 </div>
                                 <br/>
                             {% endfor %}
-
-
                         </div>
                     </div>
                 </div>

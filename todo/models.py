@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -14,7 +16,38 @@ class CategoryManager(models.Manager):
         return not_null_category
 
 
+class TaskManager(models.Manager):
+
+
+    def get_expired_task(self):
+        """
+        :return: all of expired tasks.
+        """
+        dt2 = datetime.datetime.now()
+        tasks = Task.objects.all()
+        expired_tasks = []
+        for task in tasks:
+            if (task.expired.replace(tzinfo=None) - dt2).days <= 0:
+                expired_tasks.append(task)
+        return expired_tasks
+
+    def get_notexpired_task(self):
+        """
+        :return: all of not expired tasks.
+        """
+        dt2 = datetime.datetime.now()
+        tasks = Task.objects.all()
+        notexpired_tasks = []
+        for task in tasks:
+            if (task.expired.replace(tzinfo=None) - dt2).days > 0:
+                notexpired_tasks.append(task)
+        return notexpired_tasks
+
+
 class Category(models.Model):
+    """
+    Each category have just a title.
+    """
     title = models.CharField(max_length=20)
     objects = CategoryManager()
 
@@ -26,6 +59,10 @@ class Category(models.Model):
 
 
 class Task(models.Model):
+    """
+    Each task have a multiple categories.
+    """
+
     class Meta:
         ordering = ('expired',)
 
@@ -51,6 +88,7 @@ class Task(models.Model):
     expired = models.DateTimeField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    objects = TaskManager()
 
     def __str__(self):
         return f'"{self.title}" status: {self.status}'

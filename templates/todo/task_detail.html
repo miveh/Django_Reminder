@@ -1,6 +1,8 @@
 {% extends 'todo/base.html' %}
+{% load task_expired_date %}
 {% block title %}Task Detail{% endblock title %}
 {% block main %}
+    <h2 class="title-color">Details</h2>
     <div class="mt-5">
         <div class="container">
             <div class="row  justify-content-center">
@@ -9,19 +11,22 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="article-entry">
-                                    <h3>Title: {{ object.title | title }}</h3>
-                                    <h4>Amount of time left up: {{ object.expired|timeuntil }}</h4>
-                                    <h4>Task Description: {{ object.description }}</h4>
-                                    <h4>Categories: </h4>
+                                    <h1><span style="color: #C71585">Title: </span><span>{{ object.title | title }}</span></h1>
+                                    <hr>
+                                    <h5 style="color: #FF8C00">{% expired object.expired %}</h5>
+                                    <hr>
+                                    <span><h6 style="color: #C71585">Task Description: </h6><h4 class="card card-body">{{ object.description }}</h4></span>
+                                    <hr>
+                                    <h6 style="color: #C71585">Categories: </h6>
                                     {% for obj in object.category.all %}
-                                        <h4> >> {{ obj.title }}</h4>
+                                        <h4>&ensp;&ensp;&ensp;✔{{ obj.title }}</h4>
                                     {% endfor %}
-                                    <h6>{{ object.created }} |Priority: {{ object.get_priority_display }} |Status:
-                                        {{ object.status }}
+                                    <hr>
+                                    <h6 style="color: #008080">{{ object.created }} |Priority: {{ object.get_priority_display }} |Status:
+                                        {{ object.status }} | {{ object.expired }}
                                     </h6>
+                                    <hr>
                                 </div>
-                                {# <p><a href="{% url 'article_edit' article.pk %}">Edit</a> |#}
-                                {# <a href="{% url 'article_delete' article.pk %}">Delete</a></p>#}
                                 <p>Back to <a class="btn btn-primary todo-application" href="{% url 'listview' %}">
                                     All Tasks</a>
                                 </p>
@@ -32,5 +37,4 @@
             </div>
         </div>
     </div>
-
 {% endblock main %}
